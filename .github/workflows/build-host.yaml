@@ -19,26 +19,26 @@ jobs:
               run: |
                 cd solutions/exercise-1
                 ceedling test:all
-                mkdir build/test-reports
+                mkdir -p build/test-reports
                 cp build/artifacts/test/*.xml build/test-reports/
             - name : build and test Exercise 2
               run: |
                 cd solutions/exercise-2
                 ceedling test:all
-                mkdir build/test-reports
+                mkdir -p build/test-reports
                 cp build/artifacts/test/*.xml build/test-reports/  
             - name : build and test Exercise 4
               run: |
                 cd solutions/exercise-4
                 ceedling test:all
-                mkdir build/test-reports
+                mkdir -p build/test-reports
                 cp build/artifacts/test/*.xml build/test-reports/
             - name: Coverage for Exercise 4
               run: |
                 cd solutions/exercise-4
                 ceedling gcov:all
                 ceedling utils:gcov
-                mkdir build/test-reports
+                mkdir -p build/test-reports
                 cp build/artifacts/gcov/*.xml build/test-reports/
     check:         
         runs-on: ubuntu-latest
