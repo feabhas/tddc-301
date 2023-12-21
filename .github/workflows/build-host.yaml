@@ -5,7 +5,7 @@ on: [push]
 jobs:
     build:         
         runs-on: ubuntu-latest
-        environment: ceedling
+        environment: build
         container:
             image: feabhas/ceedling
             options: -u 1001
@@ -42,7 +42,7 @@ jobs:
                 cp build/artifacts/gcov/*.xml build/test-reports/
     check:         
         runs-on: ubuntu-latest
-        environment: ceedling
+        environment: build
         container:
             image: feabhas/alpine-lizard:1.1
             options: -u 1001
@@ -62,7 +62,7 @@ jobs:
                 lizard
     lint:         
         runs-on: ubuntu-latest
-        environment: ceedling
+        environment: build
         container:
             image: feabhas/oclint-0.13
             options: -u 1001
