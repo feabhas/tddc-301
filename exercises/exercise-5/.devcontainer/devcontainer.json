@@ -1,0 +1,12 @@
+{
+	"image": "feabhas/ceedling",
+	"extensions": [
+		"ms-vscode.cpptools",
+		"tht13.html-preview-vscode",
+	],
+        // Set *default* container specific settings.json values on container create.
+        "settings": {
+			"terminal.integrated.shell.linux": "/bin/bash"
+	},
+	"remoteUser": "feabhas"
+}
