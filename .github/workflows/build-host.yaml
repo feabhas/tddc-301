@@ -54,6 +54,7 @@ jobs:
                 fetch-depth: 1  
             - name: CC Check
               run: |
+                PATH="$PATH:$HOME/.local/bin"
                 pip3 install lizard
                 cd solutions/exercise-1/src
                 lizard
