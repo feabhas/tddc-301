@@ -44,7 +44,7 @@ jobs:
         runs-on: ubuntu-latest
         environment: build
         container:
-            image: feabhas/alpine-lizard:1.1
+            image: feabhas/ubuntu-projects
             options: -u 1001
         steps:
             - name: checkout
@@ -54,6 +54,7 @@ jobs:
                 fetch-depth: 1  
             - name: CC Check
               run: |
+                pip3 install lizard
                 cd solutions/exercise-1/src
                 lizard
                 cd ../../exercise-2/src
