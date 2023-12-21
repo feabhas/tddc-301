@@ -47,6 +47,11 @@ jobs:
             image: feabhas/alpine-lizard:1.1
             options: -u 1001
         steps:
+            - name: checkout
+              uses: actions/checkout@v4
+              with:
+                sparse-checkout: solutions
+                fetch-depth: 1  
             - name: CC Check
               run: |
                 cd solutions/exercise-1/src
@@ -62,6 +67,11 @@ jobs:
             image: feabhas/oclint-0.13
             options: -u 1001
         steps:
+            - name: checkout
+              uses: actions/checkout@v4
+              with:
+                sparse-checkout: solutions
+                fetch-depth: 1  
             - name: CC Check
               run: |
                 cd solutions/exercise-1
