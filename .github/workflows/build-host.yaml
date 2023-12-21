@@ -1,0 +1,72 @@
+name: tddc-301 exercises
+
+on: [push]
+
+jobs:
+    build:         
+        runs-on: ubuntu-latest
+        environment: ceedling
+        container:
+            image: feabhas/ceedling
+            options: -u 1001
+        steps:
+            - name: checkout
+              uses: actions/checkout@v4
+              with:
+                sparse-checkout: solutions
+                fetch-depth: 1  
+            - name : build and test Exercise 1
+              run: |
+                cd solutions/exercise-1
+                ceedling test:all
+                mkdir build/test-reports
+                cp build/artifacts/test/*.xml build/test-reports/
+            - name : build and test Exercise 2
+              run: |
+                cd solutions/exercise-2
+                ceedling test:all
+                mkdir build/test-reports
+                cp build/artifacts/test/*.xml build/test-reports/  
+            - name : build and test Exercise 4
+              run: |
+                cd solutions/exercise-4
+                ceedling test:all
+                mkdir build/test-reports
+                cp build/artifacts/test/*.xml build/test-reports/
+            - name: Coverage for Exercise 4
+              run: |
+                cd solutions/exercise-4
+                ceedling gcov:all
+                ceedling utils:gcov
+                mkdir build/test-reports
+                cp build/artifacts/gcov/*.xml build/test-reports/
+    check:         
+        runs-on: ubuntu-latest
+        environment: ceedling
+        container:
+            image: feabhas/alpine-lizard:1.1
+            options: -u 1001
+        steps:
+            - name: CC Check
+              run: |
+                cd solutions/exercise-1/src
+                lizard
+                cd ../../exercise-2/src
+                lizard
+                cd ../../exercise-4/src
+                lizard
+    lint:         
+        runs-on: ubuntu-latest
+        environment: ceedling
+        container:
+            image: feabhas/oclint-0.13
+            options: -u 1001
+        steps:
+            - name: CC Check
+              run: |
+                cd solutions/exercise-1
+                oclint src/*.c -- -c -I vendor/ceedling/vendor/unity/src/
+                cd ../exercise-2
+                oclint src/*.c -- -c -I vendor/ceedling/vendor/unity/src/
+                cd ../exercise-4
+                oclint src/*.c -- -c -I vendor/ceedling/vendor/unity/src/
