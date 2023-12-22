@@ -7,7 +7,7 @@ jobs:
         runs-on: ubuntu-latest
         environment: build
         container:
-            image: feabhas/ceedling
+            image: feabhas/ubuntu-tdd
             options: -u 1001
         steps:
             - name: checkout
@@ -40,18 +40,6 @@ jobs:
                 ceedling utils:gcov
                 mkdir -p build/test-reports
                 cp build/artifacts/gcov/*.xml build/test-reports/
-    check:         
-        runs-on: ubuntu-latest
-        environment: build
-        container:
-            image: feabhas/ubuntu-projects
-            options: -u 1001
-        steps:
-            - name: checkout
-              uses: actions/checkout@v4
-              with:
-                sparse-checkout: solutions
-                fetch-depth: 1  
             - name: CC Check
               run: |
                 PATH="$PATH:$HOME/.local/bin"
@@ -62,18 +50,6 @@ jobs:
                 lizard
                 cd ../../exercise-4/src
                 lizard
-    lint:         
-        runs-on: ubuntu-latest
-        environment: build
-        container:
-            image: feabhas/oclint-0.13
-            options: -u 1001
-        steps:
-            - name: checkout
-              uses: actions/checkout@v4
-              with:
-                sparse-checkout: solutions
-                fetch-depth: 1  
             - name: CC Check
               run: |
                 cd solutions/exercise-1
