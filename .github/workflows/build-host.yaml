@@ -37,7 +37,7 @@ jobs:
               run: |
                 cd solutions/exercise-4
                 ceedling gcov:all
-                ceedling utils:gcov
+                # ceedling utils:gcov
                 mkdir -p build/test-reports
                 cp build/artifacts/gcov/*.xml build/test-reports/
             - name: CC Check
@@ -50,7 +50,7 @@ jobs:
                 lizard
                 cd ../../exercise-4/src
                 lizard
-            - name: CC Check
+            - name: OCLint
               run: |
                 cd solutions/exercise-1
                 oclint src/*.c -- -c -I vendor/ceedling/vendor/unity/src/
