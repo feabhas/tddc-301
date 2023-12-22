@@ -52,6 +52,7 @@ jobs:
                 lizard
             - name: OCLint
               run: |
+                PATH="$PATH:/home/feabhas/oclint-22.02/bin"
                 cd solutions/exercise-1
                 oclint src/*.c -- -c -I vendor/ceedling/vendor/unity/src/
                 cd ../exercise-2
